@@ -1,21 +1,33 @@
-// Typing effect
-const text = "Te iubesc muuuuuuuuult de tot! 💖";
+// Typing effect for the message
+const typingText = document.getElementById("typingText");
+const message = "Te iubesc muuuuuuuuult de tot! 💖";
+
 let i = 0;
 function typeWriter() {
-  if (i < text.length) {
-    document.getElementById("typingText").innerHTML += text.charAt(i);
+  if (i < message.length) {
+    typingText.innerHTML += message.charAt(i);
     i++;
-    setTimeout(typeWriter, 80);
+    setTimeout(typeWriter, 100);
   }
 }
 typeWriter();
 
-// Floating hearts
-const container = document.querySelector('.hearts-container');
-for (let i = 0; i < 30; i++) {
-  const heart = document.createElement('div');
-  heart.className = 'heart';
-  heart.style.left = `${Math.random() * 100}%`;
-  heart.style.animationDelay = `${Math.random() * 5}s`;
-  container.appendChild(heart);
-}
+// Bunny click animation
+const bunny = document.getElementById("bunny");
+const heartsContainer = document.querySelector(".hearts-container");
+
+bunny.addEventListener("click", function() {
+  // Create heart element
+  const heart = document.createElement("span");
+  heart.classList.add("heart");
+  heart.innerHTML = "❤️";
+  
+  // Position the heart in the container
+  heartsContainer.appendChild(heart);
+  
+  // Remove heart after animation is complete
+  setTimeout(() => {
+    heart.remove();
+  }, 2000);
+});
+
