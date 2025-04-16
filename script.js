@@ -1,6 +1,8 @@
 // Typing effect for the message
 const typingText = document.getElementById("typingText");
+const secondLine = document.getElementById("secondLine");
 const message = "Te iubesc muuuuuuuuult de tot! 💖";
+const secondMessage = "Am vrut pun un gif drăguț, dar ăsta e singurul care a mers :)";
 
 let i = 0;
 function typeWriter() {
@@ -8,26 +10,27 @@ function typeWriter() {
     typingText.innerHTML += message.charAt(i);
     i++;
     setTimeout(typeWriter, 100);
+  } else {
+    setTimeout(() => {
+      secondLine.innerText = secondMessage;
+    }, 500);
   }
 }
 typeWriter();
 
-// Bunny click animation
+// Bunny click animation (hearts creation)
 const bunny = document.getElementById("bunny");
 const heartsContainer = document.querySelector(".hearts-container");
 
 bunny.addEventListener("click", function() {
-  // Create heart element
-  const heart = document.createElement("span");
-  heart.classList.add("heart");
-  heart.innerHTML = "❤️";
-  
-  // Position the heart in the container
-  heartsContainer.appendChild(heart);
-  
-  // Remove heart after animation is complete
-  setTimeout(() => {
-    heart.remove();
-  }, 2000);
+  for (let i = 0; i < 5; i++) {
+    const heart = document.createElement("span");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = `${Math.random() * 100}vw`;
+    heartsContainer.appendChild(heart);
+    setTimeout(() => {
+      heart.remove();
+    }, 5000);
+  }
 });
-
